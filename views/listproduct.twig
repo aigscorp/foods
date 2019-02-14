@@ -1,0 +1,61 @@
+{% include 'head.twig' %}
+{% include 'navbar.html.twig' %}
+
+<div class="bg-full">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="name">{{ menuname }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="newtop">
+  <div class="container" style="text-align: center;">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="newtoplist">
+          <li><a href="/shop/nanedelu">Меню на неделю</a></li> 
+          <li><a href="/shop/zvannyi">Меню на званный обед/ужин</a></li> 
+          <li><a href="/shop/ng">Новогоднее меню</a></li> 
+          <li><a href="/shop/edinitsa">Отдельные поставки</a></li> 
+        </ul> 
+      </div>  
+    </div>
+  </div>
+</div>
+
+<div class="container container-center">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row" id="row-id">
+        {% for col in results %}
+        <div class="col-md-4" style="padding: 15px 10px;">
+          <div class="block-news" id="anime{{ col.id }}">
+            <div class="block-single">
+              <div class="block-news-img">
+                <div class="image">
+                  <a href="{{ href }}{{ col.id }}">
+                    <img src="/img/{{ col.path }}" alt="{{col.header}}" data-find={{ col.id }} data-price={{ col.price }}>
+                  </a>
+                </div>
+              </div>
+              <div class="block-news-content">
+                <h3>{{ col.header }}</h3>
+                <div class="pricer">{{ col.price }} руб.</div>
+              </div>
+              
+            </div>
+            <a href="" class="btn btn-primary" style="width:90%;margin-top:-15px;" data-search={{ col.id }}>В корзину</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>  
+    </div>  
+  </div>
+</div>
+
+<script src="/js/bootstrap.js"></script>
+<script src="/js/basket.js"></script>
+<script src="/js/databox.js"></script>

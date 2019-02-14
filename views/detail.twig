@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  {% include 'head.twig' %}
+</head>
+<body>
+    {% include 'navbar.html.twig' %}
+
+    <div class="bg-full">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="name">{{ menuname }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-detail">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="add-busket">Добавить в корзину</div>
+            <div class="pricer">Цена: {{ price }} руб.</div>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="container" style="margin-top: 20px;">
+      <ul class="nav nav-tabs" id="myTab" role="tablist" style="font-size: 18px;">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Описание</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Отзывы</a>
+        </li>
+
+      </ul>
+      <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="detail">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 blog-detail">
+                <div class="block-news">
+                  <div class="block-single">
+                    <div class="block-news-img">
+                      <div class="image">
+                        {{ path }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 blog-detail">
+                <p>
+                  {{ text }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+    </div>
+    </div>
+
+
+
+
+    <script src="/js/bootstrap.js"></script>
+
+</body>
+</html>
+
+
+
+

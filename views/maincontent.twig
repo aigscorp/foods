@@ -1,0 +1,190 @@
+<div class="main-content">
+  <div class="col-md-12">
+    <div class="main-header">
+      <h2>МЫ ПРЕДЛАГАЕМ</h2>
+    </div>
+  </div>
+  <div class="container container-center" id="main-menu">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-sm-4 color-my">
+            {# <div class="row"> #}
+              {# <div class="col-12"> #}
+                <a href="#" class="menu-list">меню на неделю</a>
+              {# </div> #}
+            {# </div> #}
+          </div>
+          <div class="col-sm-4 color-my">
+            {# <div class="row"> #}
+              <a href="#" class="menu-list">Новогоднее меню</a>
+            {# </div> #}
+          </div>
+          <div class="col-sm-4 color-my">
+            {# <div class="row"> #}
+              <a href="#" class="menu-list">Званый/обед ужин</a>
+            {# </div> #}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Меню на текущую неделю</h2>
+
+        <div class="row" id="row-id">
+          {{ data }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-sm">
+        <li class="page-item">
+          <a class="page-link" href="/" aria-label="Previous" data-pid="prev">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        {#{% for ind in  %}#}
+        <li class="page-item {{ active[0] }}"><a class="page-link" href="/" data-pid="{{ page[0] }}">{{ page[0] }}</a></li>
+        <li class="page-item {{ active[1] }}"><a class="page-link" href="/" data-pid="{{ page[1] }}">{{ page[1] }}</a></li>
+        <li class="page-item {{ active[2] }}"><a class="page-link" href="/" data-pid="{{ page[2] }}">{{ page[2] }}</a></li>
+        <li class="page-item {{ active[3] }}"><a class="page-link" href="/" data-pid="{{ page[3] }}">{{ page[3] }}</a></li>
+
+        <li class="page-item">
+          <a class="page-link" href="/" aria-label="Next" data-pid="next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+</div>
+
+<div class="about-img" id="about">
+  <div class="about-main">
+    <div class="container anim-txt">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="about-header">
+            <h2>About Us</h2>
+            <p><b>Food City</b> - проект, целью которого облегчить приготовление вкусной домашней еды! 
+              Миссия компании - создание сообщества людей объединенных стремлением узнать больше о кулинарии, 
+              происхождении и разнообразии продуктов и способов их приготовления, для поддержания хорошей 
+              физической формы, здорового образа жизни и хорошего настроения. 
+              Мы разработали уникальные рецепты на каждый день и создали простой и понятный 
+              алгоритм заказа и доставки еды. 
+              Для удобства клиентов мы выбрали оптимальный формат ужинов в двух самых 
+              популярных сегментах: «семейный» и «премиум». 
+              В семейной категории вы найдете простые и вкусные блюда, которые легко приготовить самому. 
+              «Премиум» вариант – более дорогие ингредиенты, немного экзотических продуктов и блюда ресторанного уровня. 
+              Вместе мы создадим новое идеальное меню, которое поднимет вас на новый уровень кулинарного искусства!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pay" id="pay">
+  <div class="container anim-txt">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="about-header">
+          <br>
+          <h2>Доставка и оплата</h2>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+            Repudiandae temporibus, natus amet quae nemo commodi necessitatibus 
+            dignissimos animi atque dolorem est totam. Saepe, sed ab animi velit cupiditate enim iusto.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+            Repudiandae temporibus, natus amet quae nemo commodi necessitatibus 
+            dignissimos animi atque dolorem est totam. Saepe, sed ab animi velit cupiditate enim iusto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="advice">
+
+</div>
+<div class="footer">
+  <div class="container">
+    <div class="copy">
+      Copyright Доставка продуктов с рецептами © 2019
+    </div>
+  </div>
+</div>
+
+
+{#<div class="col-md-4 blog">#}
+            {#<div class="block-news">#}
+              {#<div class="block-single">#}
+                {#<div class="block-news-img">#}
+                  {#<div class="image">#}
+                    {#<a href="#">#}
+                      {#<img src="/img/shop/17.jpg" alt="Паста с морепродуктами со сливочным соусом">#}
+                    {#</a>#}
+                  {#</div>#}
+                {#</div>#}
+                {#<div class="block-news-content">#}
+                  {#<a href="#">#}
+                    {#<h3>Паста с морепродуктами со сливочным соусом </h3>#}
+                  {#</a>#}
+                  {#<p>#}
+                    {#Паста с морепродуктами – популярное блюдо во многих странах мира. Нежный вкус креветок, кальмаров, гребешков и мидий дают великолепное сочетание с твердой пастой под сливочным соусом. Твердый сы#}
+                  {#</p>#}
+                {#</div>#}
+              {#</div>#}
+            {#</div>#}
+          {#</div>#}
+          {#<div class="col-md-4 blog">#}
+            {#<div class="block-news">#}
+              {#<div class="block-single">#}
+                {#<div class="block-news-img">#}
+                  {#<div class="image">#}
+                    {#<a href="#">#}
+                      {#<img src="/img/shop/18.jpg" alt="Чахохбили с рисом">#}
+                    {#</a>#}
+                  {#</div>#}
+                {#</div>#}
+                {#<div class="block-news-content">#}
+                  {#<a href="/img/shop/18.jpg">#}
+                    {#<h3>Чахохбили с рисом</h3>#}
+                  {#</a>#}
+                  {#<p>Чахохби́ли — рагу из птицы, национальное грузинское блюдо. Первоначально делалось из фазана, но в настоящее время из любого мяса птицы, а особенно домашней курицы. Кушанье приготавливается из ку#}
+                  {#</p>#}
+                {#</div>#}
+              {#</div>#}
+            {#</div>#}
+          {#</div>#}
+          {#<div class="col-md-4 blog">#}
+            {#<div class="block-news">#}
+              {#<div class="block-single">#}
+                {#<div class="block-news-img">#}
+                  {#<div class="image">#}
+                    {#<a href="#">#}
+                      {#<img src="/img/shop/19.jpg" alt="Буженина с картофелем">#}
+                    {#</a>#}
+                  {#</div>#}
+                {#</div>#}
+                {#<div class="block-news-content">#}
+                  {#<a href="/img/shop/19.jpg">#}
+                    {#<h3>Буженина с картофелем по деревенски</h3>#}
+                  {#</a>#}
+                  {#<p>Буженина это крупный кусок мяса, как правило, свинина, нашпигованный и#}
+                    {#промаринованный чесноком и травами, а затем запеченный в духовке целиком.#}
+                    {#Традиционно считается деликатесом и подается к столу ча#}
+                  {#</p>#}
+                {#</div>#}
+              {#</div>#}
+            {#</div>#}
+          {#</div>#}
+

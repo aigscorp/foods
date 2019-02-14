@@ -1,0 +1,116 @@
+{% include 'head.twig' %}
+{% include 'navbar.html.twig' %}
+<div id="list_product">
+  <form method="post" action="/check">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">№</th>
+        <th scope="col">Фото</th>
+        <th scope="col">Наименование</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Удалить</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for index in results %}
+        <tr>
+          <th scope="row">{{ index.num }}</th>
+          <td><img src="{{ index.img }}" style="width: 40px;"></td>
+          <td>{{ index.name }}</td>
+          <td>{{ index.price }}</td>
+          <td><div class="form-group">
+              <input type="text" class="form-control" id="countInput" name="count" value="{{ index.count }}" style="width: 80px;">
+              <input type="hidden" name="id" value="{{ index.id }}:{{ index.count }}">
+              </div>
+          </td>
+          <td>{{ index.count * index.price }}</td>
+          <td><div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="del" value="{{ index.id }}">
+              </div>
+          </td>
+        </tr>
+      {%  endfor %}
+      </tbody>
+    </table>
+    <div id="reply" style="display: none;">
+      <p>{{ reply }}</p>
+    </div>
+    <button type="submit" class="btn btn-primary">Пересчитать</button>
+  </form>
+
+  <form method="post" action="/check/order">
+    <div class="form-check">
+      <h3>Способ оплаты</h3>
+      <input class="form-check-input" type="radio" name="payment" id="payment" value="option1" checked>
+      <label class="form-check-label" for="payment">
+        Наличными при получении
+      </label>
+      <p>Рассчитаться можно с курьером наличными при получении товара</p>
+    </div>
+    <div class="form-check">
+      <h3>Способ доставки</h3>
+      <input class="form-check-input" type="radio" name="delivery" id="delivery" value="option1" checked>
+      <label class="form-check-label" for="delivery">
+        Курьером
+      </label>
+      <p>Товар вы можете получить по прибытию в наш офис</p>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Контактный телефон:</label>
+      <input type="text" class="form-control" id="phone"  name="phone">
+    </div>
+    <div class="form-group">
+      <label for="address">Адрес доставки:</label>
+      <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Оформить</button>
+  </form>
+
+</div>
+<script>
+  let txt = $('#reply>p').text();
+  if(txt != ""){
+    let reply = JSON.parse(txt);
+    if(reply.count != 0){
+      set_cookie('count', reply.count);
+      set_cookie('price', reply.price);
+      set_cookie('uid', reply.uid);
+    }else{
+      del_cookie('count');
+      del_cookie('price');
+      del_cookie('uid');
+    }
+  }
+
+
+  function del_cookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  };
+  function set_cookie (name, value, exp_y, exp_m, exp_d, path, domain, secure){
+    let cookie_string = name + "=" + encodeURIComponent(value);
+    cookie_string += "; path='/'";
+    if(exp_y){
+      let expires = new Date ( exp_y, exp_m, exp_d );
+      cookie_string += "; expires=" + expires.toGMTString();
+    }
+    if(path)
+      cookie_string += "; path=" + encodeURIComponent(path);
+    if(domain)
+      cookie_string += "; domain=" + encodeURIComponent(domain);
+    if(secure)
+      cookie_string += "; secure";
+
+    document.cookie = cookie_string;
+  };
+  console.log(reply);
+</script>
+<script src="/js/databox.js"></script>
+<script>
+  let order = document.getElementById('list_product');
+
+</script>
+{#<script src="/js/basket_test.js"></script>#}

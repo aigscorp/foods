@@ -1,0 +1,85 @@
+{#{% extends 'layout.twig' %}#}
+{% block navbar %}
+  <div id="header">
+    <div class="header-area">
+      <div class="header-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="left-top-header">
+                <ul class="nav">
+                  <li>
+                    <div class="address">
+                      <i class="fa fa-home"></i>
+                      "Россия, г.Махачкала, ул. Пушкина, д.6Б"
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fa fa-phone offset-items">
+                      "+79280625379"
+                    </i>
+                  </li>
+                  <li>
+                    <div class="social-icons offset-items">
+                      <a href="#">
+                        <i class="fa fa-facebook"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-twitter"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-pinterest"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-google-plus-official"></i>
+                      </a>
+                    </div>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="right-top-header">
+                <a class="bascet">
+                  <i class="fa fa-shopping-cart"></i>
+                  <a href="/check">Корзина: <span class="new-korzina">{{ basket }}</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-menu">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand navbar-offset" href="/">
+              <img src="/img/fc2.png" alt="FC Food City">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav my-menu-nav">
+                <li class="nav-item active">
+                  <a class="nav-link goto nav-item-color" href="#header">Главная страница<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link goto nav-item-color" href="#main-menu">Просмотреть меню</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link goto nav-item-color" href="#about">О нас</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link goto nav-item-color" href="#pay">Доставка и цены</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

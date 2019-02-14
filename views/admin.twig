@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+{% include 'head.twig' %}
+<body>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <form action="/panel/admin" method="POST">
+      <nav class="navbar navbar-light bg-light">
+        <div class="input-group col-md-8">
+          <input class="form-control py-2" type="search" placeholder="Поиск" id="search-input" name="search">
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="find">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+        </div>
+      </nav>
+    </form>  
+    <table id="mordor">
+      <tr>
+        <th>№</th>
+        <th>Редак.</th>
+        <th>Фото</th>
+        <th>Наименование</th>
+        <th>Содежание</th>
+        <th>Цена</th>
+      </tr>
+      {% for row in result %}
+        <tr data-id="{{ row.id }}" data-category-id="{{ row.category_id }}">
+          <td>{{ loop.index }}</td>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..." style="width:15px;height:15px;">
+            </div>
+          </td>
+          <td><img src="/img/{{ row.path }}" alt="" style="width: 50px;"></td>
+          <td>{{ row.header }}</td>
+          <td>{{ row.text }}</td>
+          <td>{{ row.price }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    
+    <button class="btn btn-outline-secondary" type="button" id="edit">
+      <i class="fa fa-edit"></i>
+    </button>
+    <button class="btn btn-outline-secondary" type="button" id="copy">
+      <i class="fa fa-copy"></i>
+    </button>
+
+
+  </div>
+  
+
+
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    {#method="post" action="/panel/admin"#}
+    <form id="addblog" enctype="multipart/form-data">
+      <div class="form-group row">
+        <label for="article-add" class="col-sm-2 col-form-label">Краткое описание продукта</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="article-add" name="header">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="price" class="col-sm-2 col-form-label">Цена</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="price" name="price">
+        </div>
+        <label for="count" class="col-sm-2 col-form-label">Количество</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="count" name="count">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-group col-sm-4">
+          <label for="category-sel" class="col-form-label">Выбор продукта</label>
+            <select class="form-control" id="category-sel" name="category_id">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="full-article">Подробное описание продукта</label>
+        <textarea class="form-control" id="full-article" name="text" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="load-file">выбрать файл для загрузки</label>
+        <input type="file" class="form-control-file" id="load-file" name="file" multiple="multiple">
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary" id="tab2">Добавить позицию</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+
+
+  </div>
+
+</div>
+
+<script src="/js/bootstrap.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>
+

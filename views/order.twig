@@ -1,0 +1,32 @@
+{% include 'head.twig' %}
+{% include 'navbar.html.twig' %}
+<div id="list_product">
+  <form method="post" action="/check">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Фото</th>
+        <th>№</th>
+        <th>Наименование</th>
+        <th>Цена</th>
+        <th>Кол-во</th>
+        <th>Сумма</th>
+        
+      </tr>
+      </thead>
+      <tbody>
+      {% for index in results %}
+        <tr>
+          <th>{{ index.num }}</th>
+          <td><img src="{{ index.path }}" style="width: 40px;"></td>
+          <td>{{ index.header }}</td>
+          <td>{{ index.price }}</td>
+          <td>{{ index.count }}</td>
+          <td>{{ index.count * index.price }}</td>
+          
+        </tr>
+      {%  endfor %}
+      </tbody>
+    </table>
+  </form>
+</div>
