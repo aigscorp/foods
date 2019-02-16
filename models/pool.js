@@ -3,7 +3,13 @@ let util  = require('util');
 
 console.log("host = ", process.env.MYSQL_SERVICE_HOST);
 console.log("port = ", process.env.MYSQL_PORT);
-console.log("database = ", process.env.OPENSHIFT_APP_NAME);
+console.log("database = ", process.env.MYSQL_DATABASE);
+console.log("user = ", process.env.MYSQL_USER);
+console.log("password = ", process.env.MYSQL_PASSWORD);
+console.log("service port = ", process.env.MYSQL_SERVICE_PORT_MYSQL);
+
+
+
 
 let pool = mysql.createPool({
     connectionLimit: 10,
