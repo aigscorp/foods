@@ -7,9 +7,9 @@ console.log("database = ", process.env.OPENSHIFT_APP_NAME);
 
 let pool = mysql.createPool({
     connectionLimit: 10,
-    host: "127.0.0.1",
+    host: process.env.MYSQL_SERVICE_HOST,
     user: "userRJM",
-    port: 3306,
+    port: process.env.MYSQL_PORT,
     password: "tTkKX2HUJGPHCUoN",
     database: "foods"
 });
