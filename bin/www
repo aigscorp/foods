@@ -17,7 +17,7 @@ let ip_shift = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 console.log("port_shift = ", port_shift);
 console.log("ip_shift = ", ip_shift);
 
-let port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(port_shift || '3000');
 app.set('port', port);
 
 /**
