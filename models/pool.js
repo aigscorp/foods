@@ -7,12 +7,19 @@ console.log("database = ", process.env.OPENSHIFT_APP_NAME);
 
 let pool = mysql.createPool({
     connectionLimit: 10,
-    host: process.env.OPENSHIFT_MYSQL_DB_HOST || "localhost",
+    host: "127.0.0.1",
+    user: "userRJM",
+    port: 3306,
+    password: "tTkKX2HUJGPHCUoN",
+    database: "foods"
+});
+/*
+host: process.env.OPENSHIFT_MYSQL_DB_HOST || "localhost",
     user: process.env.OPENSHIFT_MYSQL_DB_USERNAME || "root",
     port: process.env.OPENSHIFT_MYSQL_DB_PORT || 3306,
     password: process.env.OPENSHIFT_MYSQL_DB_PASSWORD || "root",
     database: process.env.OPENSHIFT_APP_NAME || "foods"
-});
+*/
 pool.getConnection((err, connection) => {
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
