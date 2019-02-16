@@ -9,11 +9,11 @@ let mysql = require('mysql');
 // let url = require('url');
 
 let indexRouter = require('./routes/index');
-// let usersRouter = require('./routes/users');
-// let deliveryRouter = require('./routes/delivery');
-// let inviteRouter = require('./routes/invite');
-// let checkRouter = require('./routes/check');
-// let adminRouter = require('./routes/admin');
+let usersRouter = require('./routes/users');
+let deliveryRouter = require('./routes/delivery');
+let inviteRouter = require('./routes/invite');
+let checkRouter = require('./routes/check');
+let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
@@ -31,29 +31,23 @@ app.disable('x-powered-by');
 console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
 // console.log('MYSQL_SERVICE_PORT:', process.env.MYSQL_SERVICE_PORT);
 
-var connection = mysql.createConnection({
-  host     : process.env.MYSQL_SERVICE_HOST,
-  port     : '3306',
-  user     : 'user',
-  password : '123',
-  database : 'food'
- });
+// var connection = mysql.createConnection({
+//   host     : process.env.MYSQL_SERVICE_HOST,
+//   port     : '3306',
+//   user     : 'user',
+//   password : '123',
+//   database : 'food'
+//  });
 
- connection.connect( function(err){
-if (err){ 
-    throw err;
-}
-else {
-    console.log('Connected');
-}
- });
+//  connection.connect( function(err){
+// if (err){ 
+//     throw err;
+// }
+// else {
+//     console.log('Connected');
+// }
+//  });
 
-// MYSQL_SERVICE_HOST: '172.30.146.69
-// MYSQL_PORT: 'tcp://172.30.146.69:3306'
-// MYSQL_SERVICE_PORT: '3306'
-// FOODS_PORT: 'tcp://172.30.138.215:8080'
-// MYSQL_PORT_3306_TCP_ADDR: '172.30.146.69'
-// FOODS_SERVICE_HOST: '172.30.138.215'
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -69,11 +63,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-// app.use('/delivery', deliveryRouter);
-// app.use('/invite', inviteRouter);
-// app.use('/', checkRouter);
-// app.use('/', adminRouter);
+app.use('/users', usersRouter);
+app.use('/delivery', deliveryRouter);
+app.use('/invite', inviteRouter);
+app.use('/', checkRouter);
+app.use('/', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

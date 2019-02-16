@@ -13,11 +13,11 @@ console.log("service port = ", process.env.MYSQL_SERVICE_PORT_MYSQL);
 
 let pool = mysql.createPool({
     connectionLimit: 10,
-    host: "localhost",
-    user: "userRJM",
-    port: 3306,
-    password: "tTkKX2HUJGPHCUoN",
-    database: "foods"
+    host: process.env.MYSQL_SERVICE_HOST,
+    user: "user",
+    port: '3306',
+    password: "123",
+    database: "food"
 });
 /*
 host: process.env.OPENSHIFT_MYSQL_DB_HOST || "localhost",
