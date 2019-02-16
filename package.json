@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon --config nodemon.json ./bin/www"
+    "dev": "nodemon --config nodemon.json ./bin/www",
+    "start": "nodemon --config nodemon.json ./bin/www"
   },
   "dependencies": {
     "busboy-body-parser": "^0.3.2",
