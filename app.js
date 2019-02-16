@@ -18,6 +18,9 @@ let indexRouter = require('./routes/index');
 let app = express();
 app.disable('x-powered-by');
 
+console.log("HOST:", process.env.OPENSHIFT_MYSQL_DB_HOST);
+console.log("ENV:", process.env);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
