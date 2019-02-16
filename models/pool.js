@@ -1,8 +1,8 @@
 let mysql = require('mysql');
 let util  = require('util');
 
-console.log("host = ", process.env.OPENSHIFT_MYSQL_DB_HOST);
-console.log("port = ", process.env.OPENSHIFT_MYSQL_DB_PORT);
+console.log("host = ", process.env.MYSQL_SERVICE_HOST);
+console.log("port = ", process.env.MYSQL_PORT);
 console.log("database = ", process.env.OPENSHIFT_APP_NAME);
 
 let pool = mysql.createPool({
