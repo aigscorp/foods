@@ -9,12 +9,11 @@ let logger = require('morgan');
 // let url = require('url');
 
 let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
-// let coolRouter = require('./routes/cool');
-let deliveryRouter = require('./routes/delivery');
-let inviteRouter = require('./routes/invite');
-let checkRouter = require('./routes/check');
-let adminRouter = require('./routes/admin');
+// let usersRouter = require('./routes/users');
+// let deliveryRouter = require('./routes/delivery');
+// let inviteRouter = require('./routes/invite');
+// let checkRouter = require('./routes/check');
+// let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
