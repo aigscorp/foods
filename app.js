@@ -33,11 +33,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/delivery', deliveryRouter);
-app.use('/invite', inviteRouter);
-app.use('/', checkRouter);
-app.use('/', adminRouter);
+// app.use('/users', usersRouter);
+// app.use('/delivery', deliveryRouter);
+// app.use('/invite', inviteRouter);
+// app.use('/', checkRouter);
+// app.use('/', adminRouter);
 
 // app.use('/users/cool', coolRouter);
 
