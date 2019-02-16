@@ -29,7 +29,22 @@ console.log('MYSQL_ROOT_PASSWORD:', process.env.MYSQL_ROOT_PASSWORD);
 console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
 console.log('MYSQL_SERVICE_PORT:', process.env.MYSQL_SERVICE_PORT);
 
+// var connection = mysql.createConnection({
+//   host     : '127.0.0.1',
+//   port     : '3306',
+//   user     : 'userRJM',
+//   password : 'some_pass',
+//   database : 'developercorey'
+//  });
 
+//  connection.connect( function(err){
+// if (err){ 
+//     throw err;
+// }
+// else {
+//     console.log('Connected');
+// }
+//  });
 
 // MYSQL_SERVICE_HOST: '172.30.146.69
 // MYSQL_PORT: 'tcp://172.30.146.69:3306'
