@@ -21,8 +21,10 @@ app.disable('x-powered-by');
 
 
 // console.log("HOST:", process.env.OPENSHIFT_MYSQL_DB_HOST);
-console.log("ENV:", process.env);
-// console.log('MYSQL_USER:', process.env.MYSQL_USER);
+// console.log("ENV:", process.env);
+console.log('MYSQL_USER:', process.env.MYSQL_USER);
+console.log('BD NAME:', process.env.DATABASE_SERVICE_NAME);
+console.log('BD NAME:', process.env.database_name);
 // console.log('MYSQL_PASSWORD:', process.env.MYSQL_PASSWORD);
 // console.log('MYSQL_DATABASE:', process.env.MYSQL_DATABASE);
 // console.log('MYSQL_ROOT_PASSWORD:', process.env.MYSQL_ROOT_PASSWORD);
