@@ -1,4 +1,4 @@
-// let Main = require('../models/pool');
+let Main = require('../models/pool');
 let template = require('../util/template');
 
 
@@ -76,30 +76,30 @@ exports.main = async function (req, res) {
    }
 
    try {
-      // let count_item = await Main.query("SELECT count(*) as items FROM catalog");
-      // let items = count_item[0].items;
-      //     // if((num_page - 1) * limit >= items){
-      //     //
-      //     // }
-      //     // console.log('count_item = ', items);
-      // let result = await Main.query("SELECT * FROM catalog LIMIT " + limits); //" WHERE id IN " + strid);
+      let count_item = await Main.query("SELECT count(*) as items FROM catalog");
+      let items = count_item[0].items;
+          // if((num_page - 1) * limit >= items){
+          //
+          // }
+          // console.log('count_item = ', items);
+      let result = await Main.query("SELECT * FROM catalog LIMIT " + limits); //" WHERE id IN " + strid);
          
-      // let str = "";
-      // for(let i = 0, len = result.length; i < len; i++){
-			// 	let cut = result[i].text;
-			// 	let href = result[i].category_id - 1;
-			// 	result[i].category_id = category[href];
-			// 	if(cut.length > 200){
-			// 		result[i].text = cut.slice(0, 200);
-			// 	}
+      let str = "";
+      for(let i = 0, len = result.length; i < len; i++){
+				let cut = result[i].text;
+				let href = result[i].category_id - 1;
+				result[i].category_id = category[href];
+				if(cut.length > 200){
+					result[i].text = cut.slice(0, 200);
+				}
 				  
-      // 	str += template(result[i]);
-      // }
+      	str += template(result[i]);
+      }
        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
        res.header('Expires', '-1');
        res.header('Pragma', 'no-cache');
-      //  res.status(200).render('index', {title: "Интернет-магазин", data: str, basket: basket, page: pages, active: active});
-      res.status(200).send('LOADING');
+       res.status(200).render('index', {title: "Интернет-магазин", data: str, basket: basket, page: pages, active: active});
+      // res.status(200).send('LOADING');
    }catch (err) {
       throw new Error(err);
    }
