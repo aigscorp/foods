@@ -5,7 +5,7 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 // let bodyParser = require('body-parser');
 let logger = require('morgan');
-// const querystring = require('querystring');
+let mysql = require('mysql');
 // let url = require('url');
 
 let indexRouter = require('./routes/index');
@@ -18,9 +18,17 @@ let indexRouter = require('./routes/index');
 let app = express();
 app.disable('x-powered-by');
 
-console.log("HOST:", process.env.OPENSHIFT_MYSQL_DB_HOST);
+
+
+// console.log("HOST:", process.env.OPENSHIFT_MYSQL_DB_HOST);
 console.log("ENV:", process.env);
 
+// MYSQL_SERVICE_HOST: '172.30.146.69
+// MYSQL_PORT: 'tcp://172.30.146.69:3306'
+// MYSQL_SERVICE_PORT: '3306'
+// FOODS_PORT: 'tcp://172.30.138.215:8080'
+// MYSQL_PORT_3306_TCP_ADDR: '172.30.146.69'
+// FOODS_SERVICE_HOST: '172.30.138.215'
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
