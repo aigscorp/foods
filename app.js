@@ -39,8 +39,6 @@ app.use('/', indexRouter);
 // app.use('/', checkRouter);
 // app.use('/', adminRouter);
 
-// app.use('/users/cool', coolRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
