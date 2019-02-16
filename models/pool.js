@@ -3,10 +3,10 @@ let util  = require('util');
 
 let pool = mysql.createPool({
     connectionLimit: 10,
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "foods"
+    host: process.env.OPENSHIFT_MYSQL_DB_HOST || "localhost",
+    user: process.env.OPENSHIFT_MYSQL_DB_USERNAME || "root",
+    password: process.env.OPENSHIFT_MYSQL_DB_PASSWORD || "root",
+    database: process.env.OPENSHIFT_APP_NAME || "foods"
 });
 pool.getConnection((err, connection) => {
     if (err) {
