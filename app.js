@@ -17,9 +17,7 @@ let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
-
-
-console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
+// console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
 // console.log('MYSQL_SERVICE_PORT:', process.env.MYSQL_SERVICE_PORT);
 
 // var connection = mysql.createConnection({
@@ -29,16 +27,6 @@ console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
 //   password : '123',
 //   database : 'food'
 //  });
-
-//  connection.connect( function(err){
-// if (err){ 
-//     throw err;
-// }
-// else {
-//     console.log('Connected');
-// }
-//  });
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
