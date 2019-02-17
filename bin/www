@@ -15,7 +15,7 @@ let http = require('http');
 let port_shift = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 let ip_shift = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 console.log("port_shift = ", port_shift);
-console.log("ip_shift = ", ip_shift);
+// console.log("ip_shift = ", ip_shift);
 
 let port = normalizePort(port_shift || '3000');
 app.set('port', port);
