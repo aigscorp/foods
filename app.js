@@ -1,5 +1,6 @@
 let createError = require('http-errors');
 let express = require('express');
+let compression = require('compression');
 // let fileUpload = require('express-fileupload');
 let path = require('path');
 let cookieParser = require('cookie-parser');
@@ -17,7 +18,7 @@ let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
-app.use(express.compress());
+app.use(compression());
 // console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
 // console.log('MYSQL_SERVICE_PORT:', process.env.MYSQL_SERVICE_PORT);
 
