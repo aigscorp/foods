@@ -11,9 +11,9 @@ let util  = require('util');
 let pool = mysql.createPool({
     connectionLimit: 10,
     host: process.env.MYSQL_SERVICE_HOST,
-    user: "user",
+    user: "root",
     port: '3306',
-    password: "123",
+    password: "root",
     database: "food"
 });
 /*
