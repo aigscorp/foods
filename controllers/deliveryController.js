@@ -7,7 +7,7 @@ exports.delivery_list = async function (req, res) {
   let basket = "";
    if(req.cookies.price !== undefined){
      basket = ' ' + req.cookies.count + ' / ' + req.cookies.price + ' руб.';
-     console.log('basket: ', basket);
+    //  console.log('basket: ', basket);
    }
 
   try {

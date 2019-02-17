@@ -5,7 +5,7 @@
     // console.log('row_id=', row_id);
     row_id.addEventListener('click', (ev) => {
       let elem = ev.target;
-      console.log(elem);
+      // console.log(elem);
       if(!$(elem).hasClass("btn")) return false;
 
       ev.preventDefault();
@@ -75,11 +75,10 @@
           elem = $(elem).closest('.page-link')[0];
         }
       }
-      // || !$(elem).hasClass('sr-only') 'page-link'
-      // console.log(elem);
+      
       let pressElem = elem.dataset.pid;
       let pageitemactive = $(elem).closest('.page-item')[0];
-      // console.log('active = ', pageitemactive);
+      
       let pageitem = $(pagination).children('.page-item');
       let pagelink = $(pageitem).children('.page-link');
 
@@ -101,7 +100,7 @@
       for(let i = 0; i < pagelink.length; i++){
         arr.push(pagelink[i].dataset.pid);
       }
-      console.log(arr.join(','));
+      // console.log(arr.join(','));
       let pag = arr.join(',') + '|' + pressElem + "," + active_item;
       set_cookie('pag', pag);
     }, true);
@@ -278,11 +277,11 @@
 
   function getCookieVal(name, str){
     let arr_cookie = str.split(';');
-    console.log('arr_cookie: ', arr_cookie);
+    // console.log('arr_cookie: ', arr_cookie);
     for(let i = 0, len = arr_cookie.length; i < len; i++){
       let tmp = arr_cookie[i].split('=');
       if(tmp[0].trim() == name){
-        console.log('tmp[0]=',tmp[0],'tmp[1]=',tmp[1]);
+        // console.log('tmp[0]=',tmp[0],'tmp[1]=',tmp[1]);
         return tmp[1];
       }
     }
@@ -293,7 +292,7 @@
     let obj = null;
     let res = [];
     let arr_val = str.split(delim1);
-    console.log('arr_val = ', arr_val);
+    // console.log('arr_val = ', arr_val);
     for(let i = 0, len = arr_val.length; i < len; i++){
       let tmp = arr_val[i].split(delim2);
       obj = new Object();

@@ -4,7 +4,7 @@ exports.inviteList = async function(req, res){
   let basket = "";
   if(req.cookies.price !== undefined){
     basket = ' ' + req.cookies.count + ' / ' + req.cookies.price + ' руб.';
-    console.log('basket: ', basket);
+    // console.log('basket: ', basket);
   }
 
   try {
@@ -20,7 +20,6 @@ exports.inviteList = async function(req, res){
 };
 
 exports.inviteDetail = async function(req, res){
-
   try {
     let result = await Invite.query("SELECT * FROM catalog WHERE id = " + req.params.id);
     // console.log("Details: ", result);
@@ -33,6 +32,5 @@ exports.inviteDetail = async function(req, res){
   } catch(err){
     throw new Error(err);
   }
-
 
 };

@@ -1,18 +1,5 @@
 let Admin = require('../models/pool');
 const fs = require('fs');
-// let multer = require('multer');
-// let twig = require('twig');
-// let storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './public/img/shop/delivery/');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   }
-// });
-//
-// let upload = multer({storage: storage}).single('file');
-// let upload2 = multer({storage: storage}).single('sendfile');
 
 let categories = ['delivery', 'invite'];
 
@@ -27,8 +14,7 @@ exports.main = async function (req, res) {
 };
 
 exports.add = async function (req, res) {
-
-  // console.log("file = ", req.files);
+ 
   try {
       let data = getParams(req);
       console.log("data = ", data);
@@ -48,7 +34,7 @@ exports.add = async function (req, res) {
       data.push(pathfile);
       await Admin.query("INSERT INTO food.catalog(category_id, header, text, price, path) VALUES(?,?,?,?,?)", data);
       // Admin.query("INSERT INTO foods.catalog(category_id, header, text, price) VALUES(?,?,?,?)", add);
-      console.log('data = ', data);
+      // console.log('data = ', data);
 
       res.status(200).send('Продукт добавлен');
       // res.redirect(303, '/panel/admin');
@@ -72,12 +58,11 @@ exports.search = async function (req, res) {
 
 exports.update = async function(req, res){
 
-  console.log("body busboy: ", req.body);
-  console.log('files:', req.files);
+  // console.log("body busboy: ", req.body);
+  // console.log('files:', req.files);
   try{
     let data = getParams(req);
     let id = +req.body.id;
-    // console.log("data = ", data);
     let stateFile = req.files.sendfile;
     let chunck, filename, pathfile = "", delFile = "";
 
@@ -94,7 +79,7 @@ exports.update = async function(req, res){
      }
 
     delFile = await Admin.query("SELECT path FROM catalog WHERE id = ?", id);
-    console.log("delfile = ", delFile[0]);
+    // console.log("delfile = ", delFile[0]);
     if(pathfile == ""){
       pathfile = delFile[0].path;
       console.log('pathfile = ', pathfile);
@@ -106,7 +91,7 @@ exports.update = async function(req, res){
       let eraseFile = './public/img/' + delFile[0].path;
       fs.unlink(eraseFile, function (err) {
         if(err) return console.log("Error delete file");
-        console.log('file deleted successfully');
+        // console.log('file deleted successfully');
       });
     }
 
@@ -124,31 +109,3 @@ function getParams(req) {
   let res = [category_id, header, text, price];
   return res;
 };
-
-// let fname = req.files.file.name;
-// let data = req.files.file.data;
-// let fullpath = "./public/img/"+fname;
-
-// fs.writeFile(fullpath, data, function(error){
-//
-//   if(error) throw error; // если возникла ошибка
-//   console.log("Асинхронная запись файла завершена. Содержимое файла:");
-//   let data = fs.readFileSync(fullpath);
-//   // console.log(data);  // выводим считанные данные
-// });
-
-// req.on('data', function (data) {
-//   console.log("call = ", data);
-// });
-
-
-// let loadfile = req.files.file;
-// let uploadPath = __dirname + '/uploads/' + loadfile;
-//
-// loadfile.mv(uploadPath, function(err) {
-//   if (err) {
-//     return res.status(500).send(err);
-//   }
-//
-//   res.send('File uploaded to ' + uploadPath);
-// });

@@ -1,7 +1,4 @@
 window.onload = function () {
-  console.log($('#tab2'));
-  // let tab2 = document.getElementById('tab2');
-  // console.log("tab2 = ", tab2);
   // $(document).ready(function () {
 
   $('#addblog').submit(function (event) {
@@ -40,7 +37,7 @@ window.onload = function () {
 
 
   // let edit = document.getElementById('edit');
-  let copy = document.getElementById('copy');
+  // let copy = document.getElementById('copy');
   let mordor = document.getElementById('mordor');
 
   mordor.addEventListener('click', function(ev){
@@ -128,7 +125,7 @@ window.onload = function () {
 
     function handleFileSelect(evt) {
       let files = evt.target.files; // FileList object
-      console.log("files=", files);
+      // console.log("files=", files);
       let f = files[0];
       if (!f.type.match('image.*')) return false;
 
@@ -149,7 +146,6 @@ window.onload = function () {
 
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
   });
-
 };
 
 

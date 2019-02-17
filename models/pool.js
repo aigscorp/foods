@@ -1,13 +1,6 @@
 let mysql = require('mysql');
 let util  = require('util');
 
-// console.log("host = ", process.env.MYSQL_SERVICE_HOST);
-// console.log("port = ", process.env.MYSQL_PORT);
-// console.log("database = ", process.env.MYSQL_DATABASE);
-// console.log("user = ", process.env.MYSQL_USER);
-// console.log("password = ", process.env.MYSQL_PASSWORD);
-// console.log("service port = ", process.env.MYSQL_SERVICE_PORT_MYSQL);
-
 let pool = mysql.createPool({
     connectionLimit: 10,
     host: process.env.MYSQL_SERVICE_HOST,
@@ -16,13 +9,7 @@ let pool = mysql.createPool({
     password: "root",
     database: "food"
 });
-/*
-host: process.env.OPENSHIFT_MYSQL_DB_HOST || "localhost",
-    user: process.env.OPENSHIFT_MYSQL_DB_USERNAME || "root",
-    port: process.env.OPENSHIFT_MYSQL_DB_PORT || 3306,
-    password: process.env.OPENSHIFT_MYSQL_DB_PASSWORD || "root",
-    database: process.env.OPENSHIFT_APP_NAME || "foods"
-*/
+
 pool.getConnection((err, connection) => {
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {

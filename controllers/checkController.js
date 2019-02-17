@@ -1,13 +1,7 @@
 let Check = require('../models/pool');
 let checks = require('../util/cookies');
 
-
 exports.checkout = async function (req, res) {
-  // let arr = req.cookies.uid.split('|');
-  // arr.pop();
-  // console.log(arr);
-  // let count = +req.cookies.count;
-  
   try{
     let results = await Check.query("SELECT * FROM catalog");
     let res_count = results.length;
@@ -24,15 +18,11 @@ exports.checkout = async function (req, res) {
 };
 
 exports.checkupdate = async function (req, res) {
-  // let arr = req.cookies.uid.split('|');
-  // arr.pop();
-
   try {
     let results = await Check.query("SELECT * FROM catalog");
     let res_count = results.length;
-    console.log('CALL check update _____________________________\n');
-
-    console.log("req.body = ", req.body);
+    // console.log('CALL check update _____________________________\n');
+    // console.log("req.body = ", req.body);
 
     for(let key in req.body){
       if(!Array.isArray(req.body[key])){
@@ -41,29 +31,23 @@ exports.checkupdate = async function (req, res) {
         req.body[key] = tmp;
       }
     }
-
-    console.log("req.body after = ", req.body);
+    // console.log("req.body after = ", req.body);
     let id = req.body.id;
     let count = req.body.count;
     let del = req.body.del;
 
-    console.log("del = ", del);
+    // console.log("del = ", del);
 
     let str_uid = req.cookies.uid;
-    console.log("str_uid = ", str_uid);
+    // console.log("str_uid = ", str_uid);
     let back = checks.checkcookie(results, res_count, str_uid);
-
-    // console.log('back = ', back);
 
     console.log('id = ', id);
     let len = back.length;
     for(let i = 0; i < len; i++){
       for(let j = 0; j < id.length; j++){
         let pair = id[j].split(':');
-        // console.log('pair[0]=', pair[0], 'pair[1]=', pair[1]);
         if(+pair[0] == back[i].id){
-
-          // console.log("i = ", i, " count=", back[i].count, " count cook=", count[j]);
           if(+count[j] != +pair[1]){
             // console.log('count cook =', count[j], " pair[1]=", pair[1]);
             // let a = +count[j];
@@ -75,16 +59,16 @@ exports.checkupdate = async function (req, res) {
       }
     }
 
-    console.log('back = ', back);
+    // console.log('back = ', back);
 
     if(del != undefined) {
       for (let i = 0; i < del.length; i++) {
         for (let j = 0; j < back.length; j++) {
-          console.log('j = ', j);
+          // console.log('j = ', j);
           if (back[j].id == +del[i]) {
             back.splice(j, 1);
-            console.log('Удалено ');
-            console.log('del back =', back);
+            // console.log('Удалено ');
+            // console.log('del back =', back);
 
           }
         }
@@ -95,9 +79,9 @@ exports.checkupdate = async function (req, res) {
     for(let i = 0; i < back.length; i++){
       uid1 = uid1 + "id:" + back[i].id + ",count:" + back[i].count + "|";
     }
-    console.log("uid1 = ", uid1);
+    // console.log("uid1 = ", uid1);
     let uid = uid1.substr(0, uid1.length - 1);
-    console.log("uid = ", uid);
+    // console.log("uid = ", uid);
     // let uid = arr.length ? "" : arr.join('|') + '|';
     // console.log('uid=', uid);
 
@@ -126,7 +110,7 @@ exports.checkorder = async function (req, res) {
 
   let order_cookie = checks.parsing(req.cookies.uid, "|", ",");
   len = order_cookie.length;
-  console.log("order_cookies=", order_cookie);
+  // console.log("order_cookies=", order_cookie);
   let str = "(";
   for(let i = 0; i < len; i++){
     str = (len - 1 == i) ? str + order_cookie[i].id : str + order_cookie[i].id + ","; 
@@ -150,8 +134,8 @@ exports.checkorder = async function (req, res) {
       }
     }
 
-    console.log("results = ", results);
-    console.log("order_num = ", ordernum, order_num[0].order_num);
+    // console.log("results = ", results);
+    // console.log("order_num = ", ordernum, order_num[0].order_num);
     
     let ins = "";
     for(let i = 0; i < len; i++){
@@ -162,12 +146,12 @@ exports.checkorder = async function (req, res) {
       }
       
     }
-    console.log("ins = ", ins);
-    console.log("body = ", req.body);
+    // console.log("ins = ", ins);
+    // console.log("body = ", req.body);
     let addr = (req.body.address).trim();
     let phone = (req.body.phone).trim();
     let full_addr = "(" + ordernum + "," + "'" + addr + "'" + "," + "'" + phone + "'" + ")";
-    console.log("full =", full_addr);
+    // console.log("full =", full_addr);
     try {
       await Check.query("INSERT INTO orders (ordernum, food_id, counter) VALUES" + ins);
       await Check.query("INSERT INTO contact (ordernum, address, phone) VALUES" + full_addr);

@@ -1,7 +1,6 @@
 let Main = require('../models/pool');
 let template = require('../util/template');
 
-
 let category = ['delivery', 'invite', 'weekly', 'newyear'];
 
 exports.main = async function (req, res) {
@@ -71,7 +70,7 @@ exports.main = async function (req, res) {
      }
 
      limits = '' + (num_page - 1) * limit + ',' + limit + '';
-     console.log("pages = ", pages);
+    //  console.log("pages = ", pages);
      // limits = "0, " + limit;
    }
 
