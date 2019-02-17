@@ -17,6 +17,7 @@ let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
+app.use(express.compress());
 // console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
 // console.log('MYSQL_SERVICE_PORT:', process.env.MYSQL_SERVICE_PORT);
 
