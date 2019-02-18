@@ -124,8 +124,15 @@
       }
       return false;
     });
+
+    $('img[src="/img/rect18.png"]').each(function(index, el) {
+      $(el).attr('src', $(el).data('real-src'));
+      console.log('Loaded: ',$(el));
+    });
+
   };
 
+/////////////////////////
   function animeBlog(search){
     let blog = document.getElementById('anime'+search);
     let htmltxt = blog.innerHTML;
