@@ -1,34 +1,25 @@
 let createError = require('http-errors');
 let express = require('express');
-let compression = require('compression');
 // let fileUpload = require('express-fileupload');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 // let bodyParser = require('body-parser');
 let logger = require('morgan');
-let mysql = require('mysql');
+// const querystring = require('querystring');
 // let url = require('url');
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+// let coolRouter = require('./routes/cool');
 let deliveryRouter = require('./routes/delivery');
 let inviteRouter = require('./routes/invite');
+let caucasusRouter = require('./routes/caucasus');
 let checkRouter = require('./routes/check');
 let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
-app.use(compression());
-// console.log('MYSQL_SERVICE_HOST:', process.env.MYSQL_SERVICE_HOST);
-// console.log('MYSQL_SERVICE_PORT:', process.env.MYSQL_SERVICE_PORT);
 
-// var connection = mysql.createConnection({
-//   host     : process.env.MYSQL_SERVICE_HOST,
-//   port     : '3306',
-//   user     : 'user',
-//   password : '123',
-//   database : 'food'
-//  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,8 +38,11 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/delivery', deliveryRouter);
 app.use('/invite', inviteRouter);
+app.use('/caucasus', caucasusRouter);
 app.use('/', checkRouter);
 app.use('/', adminRouter);
+
+// app.use('/users/cool', coolRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
