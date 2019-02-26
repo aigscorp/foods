@@ -46,7 +46,7 @@ exports.add = async function (req, res) {
         pathfile = "/shop/" + categories[data[0] - 1] + "/" + filename;
       }
       data.push(pathfile);
-      await Admin.query("INSERT INTO foods.catalog(category_id, header, text, price, path) VALUES(?,?,?,?,?)", data);
+      await Admin.query("INSERT INTO catalog(category_id, header, text, price, path) VALUES(?,?,?,?,?)", data);
       // Admin.query("INSERT INTO foods.catalog(category_id, header, text, price) VALUES(?,?,?,?)", add);
       console.log('data = ', data);
 
