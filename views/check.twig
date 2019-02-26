@@ -132,8 +132,6 @@
   for(let i = 0; i < enter.length; i++){
     enter[i].addEventListener('click', (ev)=>{
       let elemdiv = ev.target;
-      console.log(ev.target);
-      //let div = document.createElement('div');
       let img = ev.target.src;
       let popup = `
       <div id="popup">
@@ -151,7 +149,6 @@
       wnd_popup.style.display = 'block';
       lastTime = performance.now();
       update();
-
     });
   }
 
@@ -162,7 +159,7 @@
     
     let widthScreen = document.documentElement.clientWidth;
     let heightScreen = document.documentElement.clientHeight;
-    wnd_popup2 = document.getElementById('popup');
+    let wnd_popup2 = document.getElementById('popup');
     let dd = drop/delay;
     let imgW = wnd_popup2.querySelector('img').width;
     let imgH = wnd_popup2.querySelector('img').height;
@@ -171,8 +168,6 @@
     let stepW = 600 * dd;
     let stepH = 392 * dd;
     
-    //parseInt(getComputedStyle(wnd_popup2).left) + window.pageYOffset + 
-
     wnd_popup2.style.left = stepX + 'px';
     wnd_popup2.style.top = stepY + 'px';
     wnd_popup2.style.width = stepW + 'px';
@@ -189,9 +184,5 @@
 
     requestAnimationFrame(update);
   };
-  
-  
-
-
 </script>
 <script src="/js/bootstrap.min.js"></script>
