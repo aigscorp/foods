@@ -119,11 +119,19 @@
   let drop = 0;
   let lastTime = 0;  
   let delay = 300;
+
+  document.body.addEventListener('click', function(ev){
+    let elem = document.getElementById('popup');
+    if(elem == undefined) return;
+    $(document.body).removeClass('backgrd-color');  
+    elem.remove();
+  }, true);
+
   let enter = document.querySelectorAll('.enter');
 
   for(let i = 0; i < enter.length; i++){
     enter[i].addEventListener('click', (ev)=>{
-      elemdiv = ev.target;
+      let elemdiv = ev.target;
       console.log(ev.target);
       //let div = document.createElement('div');
       let img = ev.target.src;
@@ -138,25 +146,9 @@
       let body = document.body;
       $(body).addClass('backgrd-color');
       body.insertAdjacentHTML("beforeEnd", popup);
-      //$(body).css('background-color', 'red');
+      
       let wnd_popup = document.getElementById('popup');
-
-      //let styles = getComputedStyle(wnd_popup);
-      //console.log('styles =', styles.position, styles.width, styles.height);
-      //let wnd_width = parseInt(styles.width);
-      
       wnd_popup.style.display = 'block';
-
-      let module_close = document.getElementsByClassName('module-close')[0];
-      module_close.addEventListener('click', function(){
-        // console.log('clicked');
-        $(document.body).removeClass('backgrd-color');
-        //$(body).css('background-color', '');
-        let popup = document.getElementById('popup');
-        popup.style.display = 'none';
-        popup.remove();
-      });
-      
       lastTime = performance.now();
       update();
 
@@ -174,7 +166,7 @@
     let dd = drop/delay;
     let imgW = wnd_popup2.querySelector('img').width;
     let imgH = wnd_popup2.querySelector('img').height;
-    let stepX = ((widthScreen - 600)/2) * dd;
+    let stepX = ((widthScreen - 600)/2) * dd;// размер картинки 600x390
     let stepY = ((heightScreen - 392)/2) * dd - 150;
     let stepW = 600 * dd;
     let stepH = 392 * dd;
@@ -198,6 +190,8 @@
     requestAnimationFrame(update);
   };
   
+  
+
 
 </script>
 <script src="/js/bootstrap.min.js"></script>
