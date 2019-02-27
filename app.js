@@ -1,6 +1,6 @@
 let createError = require('http-errors');
 let express = require('express');
-// let fileUpload = require('express-fileupload');
+let compress = require('compression');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 // let bodyParser = require('body-parser');
@@ -24,6 +24,7 @@ app.disable('x-powered-by');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
+app.use(compress());
 app.use(logger('dev'));
 // app.use(url);
 app.use(express.json());
