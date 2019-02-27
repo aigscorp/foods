@@ -22,12 +22,12 @@ let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
-
+app.use(compress());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
-app.use(compress());
+
 app.use(logger('dev'));
 // app.use(url);
 app.use(express.json());
