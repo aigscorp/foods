@@ -27,7 +27,7 @@ app.disable('x-powered-by');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
-app.use(compress());
+// app.use(compress());
 app.use(logger('dev'));
 // app.use(url);
 app.use(express.json());
