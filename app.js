@@ -17,8 +17,8 @@ let caucasusRouter = require('./routes/caucasus');
 let checkRouter = require('./routes/check');
 let adminRouter = require('./routes/admin');
 
-let ENV = process.env.NODE_ENV;
-if(ENV == undefined) ENV = process.env.NODE_ENV = 'production'; 
+// let ENV = process.env.NODE_ENV;
+// if(ENV == undefined) ENV = process.env.NODE_ENV = 'production'; 
 
 let app = express();
 app.disable('x-powered-by');
@@ -27,7 +27,7 @@ app.disable('x-powered-by');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
-// app.use(compress());
+app.use(compress());
 app.use(logger('dev'));
 // app.use(url);
 app.use(express.json());
