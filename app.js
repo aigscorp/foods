@@ -17,6 +17,9 @@ let caucasusRouter = require('./routes/caucasus');
 let checkRouter = require('./routes/check');
 let adminRouter = require('./routes/admin');
 
+let ENV = process.env.NODE_ENV;
+if(ENV == undefined) ENV = process.env.NODE_ENV = 'production'; 
+
 let app = express();
 app.disable('x-powered-by');
 
