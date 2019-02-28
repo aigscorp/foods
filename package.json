@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SET NODE_ENV=production&&node ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "busboy-body-parser": "^0.3.2",
