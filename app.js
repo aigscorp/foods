@@ -7,23 +7,18 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 // const querystring = require('querystring');
 // let url = require('url');
-
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
-// let coolRouter = require('./routes/cool');
 let deliveryRouter = require('./routes/delivery');
 let inviteRouter = require('./routes/invite');
 let caucasusRouter = require('./routes/caucasus');
 let checkRouter = require('./routes/check');
 let adminRouter = require('./routes/admin');
 
-// let ENV = process.env.NODE_ENV;
-// if(ENV == undefined) ENV = process.env.NODE_ENV = 'production'; 
-
 let app = express();
 app.disable('x-powered-by');
 app.use(compress());
-
+app.use(express.static(path.join(__dirname, 'public')));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
@@ -32,11 +27,7 @@ app.use(logger('dev'));
 // app.use(url);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(express.bodyParser({ keepExtensions: true, uploadDir: "uploads" }));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -45,8 +36,6 @@ app.use('/invite', inviteRouter);
 app.use('/caucasus', caucasusRouter);
 app.use('/', checkRouter);
 app.use('/', adminRouter);
-
-// app.use('/users/cool', coolRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
