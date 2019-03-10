@@ -3,63 +3,78 @@
   window.onload = function(){
     let row_id = document.getElementById('row-id');
     // console.log('row_id=', row_id);
-    row_id.addEventListener('click', (ev) => {
-      let elem = ev.target;
-      // console.log(elem);
-      if(!$(elem).hasClass("btn")) return false;
+    if(row_id != undefined){
+      row_id.addEventListener('click', (ev) => {
+        let elem = ev.target;
+        
+        if(!$(elem).hasClass("btn") && !$(elem).hasClass("add-busket")) return false;
+        // console.log(elem);
+        ev.preventDefault();
+        
+        let search = $(elem).data('search');
+        console.log('search:',search);
+        let attr = "";
+        if($(elem).hasClass("add-busket")){
+          attr = elem;
+        }else if($(elem).hasClass("btn")){
+          attr = document.getElementById('row-id').querySelectorAll("[data-find='" + search + "']", "[data-price]")[0];
+        }else {
+          return;
+        }
+        console.log('attr = ', attr);
 
-      ev.preventDefault();
-      let search = $(elem).data('search');
-      let attr = document.getElementById('row-id').querySelectorAll("[data-find='" + search + "']", "[data-price]")[0];
-      
-      let price = +attr.dataset.price;
-      let price_data = price;
-      let count = 0;
-      let basket = document.getElementsByClassName('new-korzina')[0];
-      let txt = basket.innerHTML;
+        let price = +attr.dataset.price;
+        let price_data = price;
+        let count = 0;
+        let basket = document.getElementsByClassName('new-korzina')[0];
+        let txt = basket.innerHTML;
 
-      if(txt && txt.trim().length){
-        let arr = txt.split('/', 2);
-        count = +arr[0] + 1;
-        price = +(arr[1].replace('руб.', '').trim()) + price;
-      }else{
-        count = 1;
-      }
-      txt = ' ' + count + ' / ' + price + ' руб.';
-      basket.innerHTML = txt;
-      // let uid = get_cookie('uid');
-      let doc_cookie = decodeURIComponent(document.cookie);
+        if(txt && txt.trim().length){
+          let arr = txt.split('/', 2);
+          count = +arr[0] + 1;
+          price = +(arr[1].replace('руб.', '').trim()) + price;
+        }else{
+          count = 1;
+        }
+        txt = ' ' + count + ' / ' + price + ' руб.';
+        basket.innerHTML = txt;
+        // let uid = get_cookie('uid');
+        let doc_cookie = decodeURIComponent(document.cookie);
 
-      console.log('doc_cookie: ', doc_cookie);
+        console.log('doc_cookie: ', doc_cookie);
 
-      let find_uid = getCookieVal('uid', doc_cookie);
-      // console.log('find_uid: ', find_uid);
-      // uid = createId(uid, search);
-      let uid = createCookieVal(find_uid, search);
-      // console.log('after uid: ', uid);
+        let find_uid = getCookieVal('uid', doc_cookie);
+        console.log('find_uid: ', find_uid);
+        // uid = createId(uid, search);
+        let uid = createCookieVal(find_uid, search);
+        console.log('after uid: ', uid);
 
-      /*****************************************************/
-      // added for test databox
-      /*****************************************************/
-      let data = DataBox();
-      let search_data = +search;
-      let count_data = count;
-      price_data = +price_data;
-      let state = data.setData('uid', {id: search_data, count: 1, price: price_data}, 'id');
-      if(state == false){
-        count_data = data.getData('uid', {id: search_data, count: 1});
-        data.changeData('uid', {id: search_data, count: count_data + 1});
-      }
-      // console.log("data = ", data);
-
-      animeBlog(search);
-      set_cookie('count', count);
-      set_cookie('price', price);
-      set_cookie('uid', uid);
-
-
-      //, 2020, 01, 01, "/localhost:3000"
-    }, true);
+        /*****************************************************/
+        // added for test databox
+        /*****************************************************/
+        let data = DataBox();
+        let search_data = +search;
+        let count_data = count;
+        price_data = +price_data;
+        let state = data.setData('uid', {id: search_data, count: 1, price: price_data}, 'id');
+        if(state == false){
+          count_data = data.getData('uid', {id: search_data, count: 1});
+          data.changeData('uid', {id: search_data, count: count_data + 1});
+        }
+        // console.log("data = ", data);
+       
+        // set_cookie('count', count);
+        // set_cookie('price', price);
+        // set_cookie('uid', uid);
+        if($(elem).hasClass('btn')){
+          animeBlog(search);
+          set_cookie('count', count);
+        set_cookie('price', price);
+        set_cookie('uid', uid);
+        }
+    //, 2020, 01, 01, "/localhost:3000"
+      }, true);
+    }
 
     (function(){
       let pagination = document.getElementsByClassName('pagination')[0];
@@ -132,7 +147,6 @@
 
   };
 
-/////////////////////////
   function animeBlog(search){
     let blog = document.getElementById('anime'+search);
     let htmltxt = blog.innerHTML;
@@ -311,7 +325,5 @@
     }
     return res;
   };
-
-
 
 })();

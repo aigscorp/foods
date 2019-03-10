@@ -20,8 +20,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <div class="add-busket">Добавить в корзину</div>
-            <div class="pricer">Цена: {{ price }} руб.</div>
+            <div class="add-busket" data-id={{ id }}  id="add-busket">Добавить в корзину</div>
+            <div class="pricer" data-price={{ price }}>Цена: {{ price }} руб.</div>
           </div>
           <div class="col-md-6"></div>
         </div>
@@ -70,7 +70,8 @@
     </div>
 
     <script src="/js/bootstrap.min.js"></script>
-    <!-- <script src="/js/jquery.min.js"></script> -->
+    <script src="/js/datastore.js"></script>
+    <script src="/js/databox.js"></script>
 </body>
 </html>
 

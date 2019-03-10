@@ -5,10 +5,11 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 // let bodyParser = require('body-parser');
 let logger = require('morgan');
-// const querystring = require('querystring');
-// let url = require('url');
+let fs = require('fs');
+
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+// let coolRouter = require('./routes/cool');
 let deliveryRouter = require('./routes/delivery');
 let inviteRouter = require('./routes/invite');
 let caucasusRouter = require('./routes/caucasus');
@@ -17,14 +18,25 @@ let adminRouter = require('./routes/admin');
 
 let app = express();
 app.disable('x-powered-by');
+
+app.use('/', function(req, res, next){
+  let path = req.path.trim();
+  if(path.search('11.jpg') != -1){
+    console.log('PATH = ', path);
+    fs.createReadStream('./public/img/11.jpg').pipe(res);
+  }else{
+    next();
+  }
+  
+});
 app.use(compress());
 app.use(express.static(path.join(__dirname, 'public')));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 
 app.use(logger('dev'));
-// app.use(url);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

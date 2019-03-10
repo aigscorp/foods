@@ -302,6 +302,9 @@ img, .test {
   font-weight: 600;
   font-size: 18px;
 }
+.add-busket:hover{
+  cursor: pointer;
+}
 .add-detail {
   padding: 40px 0 0;
   text-align: center;
