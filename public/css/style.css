@@ -360,3 +360,7 @@ img, .test {
 .col-md-ex-4{
   padding: 15px;
 }
+#itogo {
+  text-align: right;
+  font-weight: 700;
+}

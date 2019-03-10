@@ -38,8 +38,9 @@
         </tbody>
       </table>
     </div>
-    <div id="reply" style="display: none;">
-      <p>{{ reply }}</p>
+    <div id="reply">
+      <p style="display: none;">{{ reply }}</p>
+      <p id="itogo"></p>
     </div>
     <button type="submit" class="btn btn-primary">Пересчитать</button>
   </form>
@@ -85,13 +86,15 @@
       set_cookie('count', reply.count);
       set_cookie('price', reply.price);
       set_cookie('uid', reply.uid);
+      let itogo = document.getElementById('itogo');
+      itogo.innerHTML = "Всего " + reply.count +  " на сумму " + reply.price + " руб.";
     }else{
       del_cookie('count');
       del_cookie('price');
       del_cookie('uid');
     }
   }
-
+  
 
   function del_cookie(name) {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -112,6 +115,7 @@
 
     document.cookie = cookie_string;
   };
+
   // console.log(reply);
 </script>
 <script src="/js/databox.js"></script>

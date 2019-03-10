@@ -7,10 +7,10 @@ exports.checkout = async function (req, res) {
     let res_count = results.length;
     // let back = checks.checkcook(results, res_count, arr);
     let str_uid = req.cookies.uid;
-    console.log("str_uid = ", str_uid);
+    // console.log("str_uid = ", str_uid);
     let back = checks.checkcookie(results, res_count, str_uid);
-    
-    res.status(200).render('check', {title: 'Интернет-магазин', results: back});
+    let reply = {count: req.cookies.count, uid: str_uid, price: req.cookies.price};
+    res.status(200).render('check', {title: 'Интернет-магазин', results: back, reply: JSON.stringify(reply)});
     // res.status(200).send('Update');
   }catch (e) {
     throw new Error(e);
