@@ -24,38 +24,6 @@ let file = fs.createReadStream('./public/img/11.jpg');
 let app = express();
 app.disable('x-powered-by');
 
-app.use('/', function(req, res, next){
-  let path = req.path.trim();
-  
-  // if(path.search('.css') != -1){
-  //   console.log('counter = ', counter++);
-  // }
-  if(path.search('11.jpg') != -1){
-    console.log('PATH = ', path);
-    // res.header({'Content-Type': 'image/jpeg'}); //'Content-Encoding': 'gzip',
-    // fs.createReadStream('./public/img/11.jpg').pipe(res);
-    // let file = fs.createReadStream('./public/img/11.jpg');
-    fs.createReadStream('./public/img/11.jpg').pipe(res);
-    // file.pipe(res);
-    // file.on('error', ()=>{
-    //   res.status(500).end('Server error');
-    // });
-    // file.on('close', ()=>{
-    //   // console.log('close');
-    //   setTimeout(function(){
-    //     file = fs.createReadStream('./public/img/11.jpg');
-    //   }, 100);
-    // });
-    // res.on('close', ()=>{
-    //   console.log('destroyed');
-    //   file.destroy();
-    // });
-      
-  }else{
-    next();
-  }
-  
-});
 app.use(compress());
 app.use(express.static(path.join(__dirname, 'public')));
 
