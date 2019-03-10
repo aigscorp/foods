@@ -57,17 +57,18 @@ exports.delivery_detail_add = async function(req, res){
     console.log('basket: ', basket);
   }
   try {
-    let result = await Delivery.query("SELECT * FROM catalog WHERE id = 1");
+    // let result = await Delivery.query("SELECT * FROM catalog WHERE id = 1");
     // console.log("Details: ", result);
     // res.send('NOT implemented: delivery detail: ' + result[0].text);
     
-    result[0].path = '<img src=/img/' + result[0].path + '>';
+    // result[0].path = '<img src=/img/' + result[0].path + '>';
     // "src=" + result[0].path;
     // console.log("detail img = ", result[0].path);
     res.cookie('price', req.body.price);
     res.cookie('count', req.body.count);
     res.cookie('uid', req.body.uid);
-    res.render('detail', {title: "Интернет-магазин", path: result[0].path, text: result[0].text, menuname: result[0].header, price: result[0].price, basket: basket, id: result[0].id});
+    // res.render('detail', {title: "Интернет-магазин", path: result[0].path, text: result[0].text, menuname: result[0].header, price: result[0].price, basket: basket, id: result[0].id});
+    res.render('detail', {title: "Интернет-магазин", basket: basket});
   } catch(err){
     throw new Error(err);
   }
