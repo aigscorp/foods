@@ -7,9 +7,10 @@ exports.checkout = async function (req, res) {
     let res_count = results.length;
     // let back = checks.checkcook(results, res_count, arr);
     let str_uid = req.cookies.uid;
-    // console.log("str_uid = ", str_uid);
+    console.log("str_uid = ", str_uid, req.cookies.price, req.cookies.count);
     let back = checks.checkcookie(results, res_count, str_uid);
     let reply = {count: req.cookies.count, uid: str_uid, price: req.cookies.price};
+
     res.status(200).render('check', {title: 'Интернет-магазин', results: back, reply: JSON.stringify(reply)});
     // res.status(200).send('Update');
   }catch (e) {
@@ -123,7 +124,8 @@ exports.checkorder = async function (req, res) {
     let order_num = await Check.query("SELECT max(ordernum) as order_num FROM orders");
     let ordernum = (order_num[0].order_num == null) ? order_num[0].order_num = 0 : order_num[0].order_num;
     ordernum++;
-
+    let format_ordernum = '0'.repeat(5 - (ordernum.toString()).length) + ordernum;
+    
     for(let i = 0; i < results.length; i++){
       for(let j = 0; j < len; j++){
         if(results[i].id == order_cookie[j].id){
@@ -138,11 +140,20 @@ exports.checkorder = async function (req, res) {
     // console.log("order_num = ", ordernum, order_num[0].order_num);
     
     let ins = "";
+    let date = new Date();
+    date = date.getUTCFullYear() + '-' +
+        ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
+        ('00' + date.getUTCDate()).slice(-2) + ' ' + 
+        ('00' + date.getUTCHours()).slice(-2) + ':' + 
+        ('00' + date.getUTCMinutes()).slice(-2) + ':' + 
+        ('00' + date.getUTCSeconds()).slice(-2);
+    // console.log('date = ', date);
+    date = "'" + date + "'";
     for(let i = 0; i < len; i++){
       if(len - 1 == i){
-        ins = ins + "(" + ordernum + "," + order_cookie[i].id + "," + order_cookie[i].count + ")";
+        ins = ins + "(" + ordernum + "," + order_cookie[i].id + "," + order_cookie[i].count + "," + date + ")";
       }else{
-        ins = ins + "(" + ordernum + "," + order_cookie[i].id + "," + order_cookie[i].count + "),";
+        ins = ins + "(" + ordernum + "," + order_cookie[i].id + "," + order_cookie[i].count + "," + date + "),";
       }
       
     }
@@ -151,15 +162,20 @@ exports.checkorder = async function (req, res) {
     let addr = (req.body.address).trim();
     let phone = (req.body.phone).trim();
     let full_addr = "(" + ordernum + "," + "'" + addr + "'" + "," + "'" + phone + "'" + ")";
+    
     // console.log("full =", full_addr);
     try {
-      await Check.query("INSERT INTO orders (ordernum, food_id, counter) VALUES" + ins);
+      await Check.query("INSERT INTO orders (ordernum, food_id, counter, addtime) VALUES" + ins);
       await Check.query("INSERT INTO contact (ordernum, address, phone) VALUES" + full_addr);
     }catch(e){
       throw new Error(e);
     }
-
-    res.status(200).render('order', {title: 'Интернет-магазин', results: results});
+    let allprice = req.cookies.price;
+    res.clearCookie('price');
+    res.clearCookie('uid');
+    res.clearCookie('count');
+    res.status(200).render('order', {title: 'Интернет-магазин', results: results, ordernum: format_ordernum, 
+                            allprice: allprice, addr: addr, phone: phone, date: date});
   }catch(err){
     throw new Error(err); 
   }

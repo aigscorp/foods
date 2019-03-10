@@ -364,3 +364,10 @@ img, .test {
   text-align: right;
   font-weight: 700;
 }
+.order-fname {
+  padding: 10px 10px 5px;
+  font-weight: 700;
+}
+.order-field {
+  padding: 0 10px 10px 40px;
+}
